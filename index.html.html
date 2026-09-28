@@ -1,0 +1,355 @@
+﻿```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibnexa</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#0b0b0f;
+    color:white;
+}
+
+header{
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    background:#101014;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#ff3d81;
+}
+
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    margin:0 12px;
+}
+
+nav a:hover{
+    color:#ff3d81;
+}
+
+.search{
+    background:#1b1b22;
+    border:1px solid #333;
+    border-radius:20px;
+    padding:10px 15px;
+    color:white;
+    width:190px;
+}
+
+.hero{
+    min-height:430px;
+    padding:90px 7%;
+    display:flex;
+    align-items:center;
+    background:
+    linear-gradient(90deg,#0b0b0f 15%,transparent),
+    linear-gradient(0deg,#0b0b0f,transparent),
+    #17121e;
+}
+
+.hero-content{
+    max-width:600px;
+}
+
+.badge{
+    color:#ff3d81;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+h1{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    color:#bbb;
+    font-size:17px;
+    line-height:1.6;
+}
+
+.buttons{
+    margin-top:25px;
+}
+
+.btn{
+    padding:13px 24px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    font-weight:bold;
+    margin-right:10px;
+}
+
+.watch{
+    background:#ff3d81;
+    color:white;
+}
+
+.more{
+    background:#292932;
+    color:white;
+}
+
+section{
+    padding:35px 6%;
+}
+
+.section-title{
+    font-size:25px;
+    margin-bottom:20px;
+}
+
+.categories{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.category{
+    padding:10px 20px;
+    background:#19191f;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.category:hover{
+    background:#ff3d81;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#15151b;
+    border-radius:12px;
+    overflow:hidden;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.poster{
+    height:240px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    font-weight:bold;
+    background:linear-gradient(135deg,#29243d,#111116);
+}
+
+.card-info{
+    padding:14px;
+}
+
+.card-info h3{
+    margin-bottom:7px;
+}
+
+.card-info p{
+    color:#999;
+    font-size:13px;
+}
+
+footer{
+    text-align:center;
+    padding:35px;
+    color:#777;
+    border-top:1px solid #222;
+}
+
+@media(max-width:700px){
+    nav{
+        display:none;
+    }
+
+    h1{
+        font-size:40px;
+    }
+
+    .search{
+        width:130px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Vibnexa</div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#shows">Shows</a>
+        <a href="#categories">Categories</a>
+    </nav>
+
+    <input class="search" id="searchBox"
+           type="text"
+           placeholder="Search..."
+           onkeyup="searchShows()">
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="badge">WELCOME TO VIBNEXA</div>
+
+        <h1>Your Next Vibe.</h1>
+
+        <p>
+            Discover K-Dramas, J-Dramas, series and more
+            in one simple entertainment hub.
+        </p>
+
+        <div class="buttons">
+            <button class="btn watch" onclick="startWatching()">
+                ▶ Start Watching
+            </button>
+
+            <button class="btn more" onclick="showMessage()">
+                More Info
+            </button>
+        </div>
+    </div>
+</section>
+
+<section id="categories">
+    <div class="section-title">Explore Categories</div>
+
+    <div class="categories">
+        <div class="category">K-Drama</div>
+        <div class="category">J-Drama</div>
+        <div class="category">Anime</div>
+        <div class="category">Series</div>
+        <div class="category">Movies</div>
+        <div class="category">Trending</div>
+    </div>
+</section>
+
+<section id="shows">
+
+    <div class="section-title">Trending Now</div>
+
+    <div class="cards" id="showList">
+
+        <div class="card" data-name="Moonlight">
+            <div class="poster">MOONLIGHT</div>
+            <div class="card-info">
+                <h3>Moonlight</h3>
+                <p>K-Drama • Romance</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="Tokyo Nights">
+            <div class="poster">TOKYO NIGHTS</div>
+            <div class="card-info">
+                <h3>Tokyo Nights</h3>
+                <p>J-Drama • Mystery</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="Hidden Story">
+            <div class="poster">HIDDEN STORY</div>
+            <div class="card-info">
+                <h3>Hidden Story</h3>
+                <p>Series • Thriller</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="Blue Summer">
+            <div class="poster">BLUE SUMMER</div>
+            <div class="card-info">
+                <h3>Blue Summer</h3>
+                <p>Drama • Romance</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="Night Code">
+            <div class="poster">NIGHT CODE</div>
+            <div class="card-info">
+                <h3>Night Code</h3>
+                <p>Series • Mystery</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="Lost Signal">
+            <div class="poster">LOST SIGNAL</div>
+            <div class="card-info">
+                <h3>Lost Signal</h3>
+                <p>Series • Thriller</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 Vibnexa • Your Entertainment Vibe
+</footer>
+
+<script>
+
+function startWatching(){
+    alert("Vibnexa player will be added soon!");
+}
+
+function showMessage(){
+    alert("More Vibnexa features are coming soon!");
+}
+
+function searchShows(){
+
+    let input =
+        document.getElementById("searchBox")
+        .value.toLowerCase();
+
+    let cards =
+        document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+
+        let name =
+            card.dataset.name.toLowerCase();
+
+        if(name.includes(input)){
+            card.style.display = "";
+        }else{
+            card.style.display = "none";
+        }
+
+    });
+}
+
+</script>
+
+</body>
+</html>
+```
