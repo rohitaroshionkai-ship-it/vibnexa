@@ -1,9 +1,17 @@
-﻿{
+﻿
+{
   "name": "Vibnexa",
   "short_name": "Vibnexa",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#09090d",
   "theme_color": "#ff3d81",
-  "description": "Vibnexa - Discover K-Dramas, C-Dramas, J-Dramas and Indian Shows."
+  "description": "Vibnexa - Drama and entertainment app",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
